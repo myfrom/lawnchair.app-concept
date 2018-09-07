@@ -1,0 +1,27 @@
+{
+  "name": "Lawnchair Launcher",
+  "short_name": "Lawnchair",
+  "icons": [
+      {
+          "src": "/images/logo-128px.png",
+          "sizes": "128x128",
+          "type": "image/png"
+      },
+      {
+          "src": "/images/logo-512px.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#F5F5F5",
+  "display": "browser",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=ch.deletescape.lawnchair.plah",
+      "id": "ch.deletescape.lawnchair.plah"
+    }
+  ] 
+}
