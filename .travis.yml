@@ -6,7 +6,7 @@ install:
  - npm install
 
 script:
- - echo 'No tests yet, but they\'r coming, don\'t worry ;)'
+ - echo "No tests yet, but they'r coming, don't worry ;)"
 
 before_deploy:
  - npm install
