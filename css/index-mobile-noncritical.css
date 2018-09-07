@@ -1,0 +1,112 @@
+label[for="nav-toggle"] > svg {
+  transition: transform 300ms ease-in-out;
+}
+#nav-toggle:checked ~ label[for="nav-toggle"] {
+  background: none;
+}
+#nav-toggle:checked ~ label[for="nav-toggle"] > svg {
+  transform: rotate(-180deg);
+}
+#nav-toggle:not(:checked) ~ nav {
+  display: none;
+}
+#nav-toggle:not(:checked) ~ nav:not(.upgraded),
+nav.upgraded.collapsed {
+  transform: translateY(-50%);
+  opacity: 0;
+}
+#nav-toggle:checked ~ nav:not(.upgraded),
+nav.upgraded:not(.collapsed) {
+  transition-delay: 0ms;
+  transition-timing-function: ease-in;
+  transition-duration: 300ms;
+}
+nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(27,126,217,0.95);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 20vh 0;
+  transition: opacity 160ms ease-out 100ms, transform 260ms ease-out;
+}
+nav > a {
+  background: none;
+  margin: 2vh;
+  position: relative;
+}
+nav > a::before {
+  content: "";
+  border: 3px solid white;
+  border-width: 3px 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-out;
+}
+nav > a:hover::before,
+nav > a.active::before {
+  transform: none;
+}
+nav #download-button {
+  display: none;
+}
+nav #download-section {
+  display: block;
+}
+nav #download-section img {
+  margin-top: 24px;
+}
+
+.showcase-in-section {
+  overflow-y: hidden;
+  position: relative;
+  margin-bottom: 16px;
+}
+.showcase-in-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0) 90px,
+    rgba(255,255,255,1) 280px);
+}
+.showcase-in-section span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 16px;
+}
+
+.before-enter {
+  transform: translateY(-25%);
+  opacity: 0;
+}
+.entry-anim {
+  transition: all 200ms ease-out;
+}
+
+footer {
+  display: block;
+  padding: 0.8em 0;
+}
+footer > .footer-column {
+  max-width: unset !important;
+}
+footer > .footer-column:not(:nth-of-type(1)) {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 1em;
+}
