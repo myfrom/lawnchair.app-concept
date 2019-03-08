@@ -201,6 +201,11 @@ function modernHtml() {
       ' data-lazyload';
   };
 
+  // Helper function, needed because gulp-responsive turns .jpg to .jpeg ;-;
+  function jpgToJpeg(input) {
+    return input == 'jpg' ? 'jpeg' : input;
+  }
+
   return gulp.src('*.html', { base: './' })
     .pipe(replace(/<(img src="images\/logo-512px\.png" [^>]*)>/, (_, p1) => `
       <noscript class="lazyload-image">
@@ -265,8 +270,8 @@ function modernHtml() {
       <noscript class="lazyload-image">
         <${p1}
         srcset="
-          ${p2}.${p3} 100w,
-          ${p2}-200px.${p3} 200w"
+          ${p2}.${jpgToJpeg(p3)} 100w,
+          ${p2}-200px.${jpgToJpeg(p3)} 200w"
         sizes="100px">
       </noscript>
       <${getPlaceholderImageTag(p1)}>
@@ -275,8 +280,8 @@ function modernHtml() {
       <noscript class="lazyload-image">
         <${p1}
         srcset="
-          ${p2}.${p3} 32w,
-          ${p2}-64px.${p3} 64w"
+          ${p2}.${jpgToJpeg(p3)} 32w,
+          ${p2}-64px.${jpgToJpeg(p3)} 64w"
         sizes="32px">
       </noscript>
       <${getPlaceholderImageTag(p1)}>
