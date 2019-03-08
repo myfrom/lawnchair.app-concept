@@ -420,3 +420,25 @@
 
   navEl.classList.add('upgraded');
 })();
+
+
+// Register Paint Worklet if available
+(() => {
+  if ('paintWorklet' in CSS) {
+    CSS.paintWorklet.addModule('js/background-paint-worklet.js');
+  }
+
+  // And pass scroll value so it can go alive
+  const bg = document.querySelector('#background');
+  let lastScrollPos = window.scrollY;
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(function raf() {
+      const scrollPos = window.scrollY;
+      if (scrollPos !== lastScrollPos) {
+        lastScrollPos = scrollPos;
+        bg.style.setProperty('--paint-scroll-position', scrollPos);
+        raf();
+      }
+    });
+  }, { passive: true });
+})();

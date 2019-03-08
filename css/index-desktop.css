@@ -73,6 +73,21 @@ section .text {
   margin: 0 0 0 30px;
 }
 
+#authors-grid a img {
+  transition: transform 160ms ease-in-out;
+}
+#authors-grid a:hover img, #authors-grid a:focus img {
+  transform: scale(1.1) rotate(-10deg);
+}
+
+@supports (background: paint(id)) {
+  
+  #background {
+    background-image: paint(background);
+  }
+
+}
+
 @media (max-width: 980px) {
 
   #title h1 {
