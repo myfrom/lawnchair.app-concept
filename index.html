@@ -45,6 +45,7 @@
       font-weight: 500;
       color: #212121;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     html {
@@ -99,7 +100,7 @@
       top: 16px;
       right: 20px;
       z-index: 2;
-      background-color: #1B7ED9;
+      background-color: #1a73e8;
     }
     label[for="nav-toggle"] > svg {
       fill: white;
@@ -114,13 +115,48 @@
       margin-right: 18px;
     }
     nav > a {
-      background-color: #1B7ED9;
-      color: white;
       text-transform: uppercase;
-      line-height: 20px;
-      height: 40px;
-      padding: 10px;
       margin: 10px;
+      color: var(--color);
+      background-color: var(--bg-color);
+      position: relative;
+      border-radius: 4px;
+      height: 50px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+    }
+    nav > a::before {
+      content: "";
+      position: absolute;
+      border-radius: 4px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.3;
+      transition: opacity 200ms ease-out;
+    }
+
+    #showcase {
+      --color: #1a73e8;
+    }
+    nav > a:nth-child(1), #about {
+      --color: #1ad9d3;
+      --bg-color: #d1f7f6;
+    }
+    nav > a:nth-child(2), #features {
+      --color: #1a73e8;
+      --bg-color: #d1e3fa;
+    }
+    
+    nav > a:nth-child(3), #team {
+      --color: #d91a93;
+      --bg-color: #f7d1e9;
+    }
+    nav > a:nth-child(4) {
+      --color: #1ad960;
+      --bg-color: #d1f7df;
     }
 
     section {
@@ -176,7 +212,7 @@
       max-height: 300px;
     }
     .showcase-author {
-      color: #1B7ED9;
+      color: var(--color);
       font-size: 14px;
       margin-top: 15px;
       transition: all 200ms ease-in-out;

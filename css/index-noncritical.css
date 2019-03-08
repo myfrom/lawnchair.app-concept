@@ -26,6 +26,31 @@ header.header-waterfall > :not(label) {
   margin-bottom:  0.7em;
 }
 
+nav > a:nth-child(1)::before {
+  box-shadow:
+    0 12px 17px 2px rgba(26, 217, 211, 0.14),
+    0 5px 22px 4px rgba(26, 217, 211, 0.2),
+    0px 2px 4px 0 rgba(26, 217, 211, 0.26);
+}
+nav > a:nth-child(2)::before {
+  box-shadow:
+    0 12px 17px 2px rgba(26, 115, 232, 0.14),
+    0  5px 22px 4px rgba(26, 115, 232, 0.2),
+    0  2px  4px 0   rgba(84, 111, 146, 0.15);
+}
+nav > a:nth-child(3)::before {
+  box-shadow:
+    0 12px 17px 2px rgba(217, 26, 147, 0.14),
+    0  5px 22px 4px rgba(217, 26, 147, 0.2),
+    0  2px  4px 0   rgba(217, 26, 147, 0.1);
+}
+nav > a:nth-child(4)::before {
+  box-shadow:
+    0 12px 17px 2px rgba(26, 217, 96, 0.14),
+    0  5px 22px 4px rgba(26, 217, 96, 0.2),
+    0  2px  4px 0   rgba(26, 217, 96, 0.26);
+}
+
 nav #download-section, #download-section div {
   display: flex;
   flex-direction: column;
@@ -60,7 +85,7 @@ nav #download-section.upgraded {
 #scroll-down-indicator > svg {
   height: 40px;
   width: 40px;
-  stroke: #1b7ed9;
+  stroke: var(--color);
   opacity: 0.78;
   fill: none;
   stroke-width: 2px;
@@ -166,16 +191,16 @@ input:checked+label+.tab-content {
   background-color: #d1e3fa;
 }
 #instagram-link::before {
-  background-color: #e4405f;
+  background-color: #f7d1e9;
 }
 #telegram-link::before {
-  background-color: #35ace1;
+  background-color: #d1f7f6;
 }
 #support-link::before {
-  background-color: #00E676;
+  background-color: #d1f7df;
 }
 #github-link::before {
-  background-color: #607D8B;
+  background-color: #d8d1f7;
 }
 #social-links a:hover::before,
 #social-links a:focus::before {
@@ -208,24 +233,27 @@ footer > .footer-column p {
 }
 
 @media (min-width: 700px) {
+
   #download-section {
     position: absolute;
-    top: 30px;
+    top: 25px;
     right: 28px;
-    background-color: #1b7ed9;
+    background-color: #1ad960;
+    border-radius: 4px;
     padding: 0 22px 22px 22px;
     opacity: 1;
     transform: none;
     transform-origin: top right;
     transition: all 200ms ease-in-out;
     box-shadow:
-      0 16px 24px 2px rgba(27, 126, 217, 0.14),
-      0  6px 30px 5px rgba(10, 15, 20, 0.12),
-      0  8px 10px 0   rgba(0, 0, 0, 0.2);
+    0 12px 17px 2px rgba(26, 217, 96, 0.14),
+    0  5px 22px 4px rgba(26, 217, 96, 0.2),
+    0  2px  4px 0   rgba(26, 217, 96, 0.26);
   }
   #download-section.upgraded.collapsed {
     opacity: 0;
     transform: scale(calc(152/368), calc(40/228));
     pointer-events: none;
   }
+
 }

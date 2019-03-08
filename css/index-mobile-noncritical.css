@@ -38,7 +38,9 @@ nav {
 nav > a {
   background: none;
   margin: 2vh;
-  position: relative;
+  color: white;
+  padding: 10px;
+  display: block;
 }
 nav > a::before {
   content: "";
@@ -50,6 +52,9 @@ nav > a::before {
   left: 0;
   right: 0;
   transform: scaleX(0);
+  box-shadow: none !important;
+  opacity: 1;
+  border-radius: 0;
   transform-origin: left;
   transition: transform 200ms ease-out;
 }
