@@ -87,14 +87,13 @@ nav #download-section.upgraded {
   opacity: 1;
 }
 
-#tabs {
-  width: 100%;
+#tabs-container {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
   justify-content: center;
+  align-items: start;
 }
-.tab {
+.tab-header {
   flex: 1;
   padding: 10px 0;
   font-size: 20px;
@@ -106,15 +105,16 @@ nav #download-section.upgraded {
   justify-content: center;
   max-width: 200px;
   position: relative;
+  word-break: break-word;
 }
-.tab::before {
+.tab-header::before {
   content: "";
   position: absolute;
   bottom: -3px;
   left: 14px;
   right: 14px;
   height: 3px;
-  border-top: 3px solid #1B7ED9;
+  border-top: 3px solid var(--color);
   border-radius: 3px;
   opacity: 0;
   transform: scaleX(0);
@@ -122,40 +122,25 @@ nav #download-section.upgraded {
   transition-duration: 160ms;
   transition-timing-function: ease-in-out;
 }
-.tab:hover::before, .tab:focus::before {
+.tab-header:hover::before, .tab-header:focus::before {
   opacity: 0.3;
   transform: scaleX(0.5);
 }
-.tab.active::before {
+input:checked+.tab-header::before {
   opacity: 1;
   transform: none;
 }
-
-#tabs-content.upgraded {
-  overflow: hidden;
-  position: relative;
-  margin-top: 16px;
-}
-#tabs-content.upgraded .tab-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.tab-content {
+  display: block !important;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 160ms ease-out, transform 200ms ease-out;
+  transition: opacity 160ms ease-in, transform 200ms ease-in;
 }
-#tabs-content.upgraded .tab-content.active {
+input:checked+label+.tab-content {
   opacity: 1;
   transform: none;
-  transition-timing-function: ease-in;
+  transition-timing-function: ease-out, ease-out;
   transition-delay: 160ms;
-}
-#tabs-content.upgraded .text,
-#tabs-content.upgraded .text p {
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 #social-links a {
@@ -178,7 +163,7 @@ nav #download-section.upgraded {
   transition: transform 200ms ease-out;
 }
 #twitter-link::before {
-  background-color: #55acee;
+  background-color: #d1e3fa;
 }
 #instagram-link::before {
   background-color: #e4405f;

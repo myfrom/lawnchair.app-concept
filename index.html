@@ -222,19 +222,33 @@
     }
     #features .phone-ss {
       position: absolute;
-      top: 34px;
-      right: 10px;
-      left: 10px;
-      bottom: 37px;
-      height: 318px;
-      width: 180px;
+      top: 32px;
+      left: 11px;
+      height: 315px;
+      width: 177px;
     }
     #features .phone-ss:not(.active) {
       display: none;
     }
 
-    #tabs-content:not(.upgraded) .tab-content:not(.active) {
+    #tabs-container input {
       display: none;
+    }
+    #tabs-container input:not(:checked)+label+div {
+      display: none;
+    }
+    .tab-content {
+      position: absolute;
+      top: 52px;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+    #tabs-container {
+      width: 100%;
+      max-width: 600px;
+      min-height: 450px;
+      position: relative;
     }
 
     #people {
@@ -481,43 +495,43 @@
     <div class="showcase-in-section showcase">
       <img src="images/features/frame.png" alt="" id="phone-frame">
       <img src="images/features/customisation.png" alt="" class="phone-ss active" data-index="0">
-      <img src="images/features/notification-dots.png" alt="" class="phone-ss" data-index="1">
-      <img src="images/features/google-feed.png" alt="" class="phone-ss" data-index="2">
+      <img src="images/features/pie-actions.png" alt="" class="phone-ss" data-index="1">
+      <img src="images/features/quickswitch.png" alt="" class="phone-ss" data-index="2">
     </div>
     <div class="vertical-container">
       <h2>What can you find in Lawnchair?</h2>
       <div id="tabs-container">
-        <div id="tabs">
-          <a class="tab active" data-index="0">Customization</a>
-          <a class="tab" data-index="1">All Oreo goodness</a>
-          <a class="tab" data-index="2">Google Feed</a>
+        <input type="radio" name="features-tabs" id="tab-customization" checked>
+        <label for="tab-customization" class="tab-header">Customization</label>
+        <div class="tab-content longest"><!-- Used in index.js to determine size -->
+          <p>
+            Change what you want:
+          </p>
+          <ul class="in-text-list">
+            <li>Get your favorite icons from hundreds of icon packs in the Play Store.</li>
+            <li>Adjust label size, desktop grid, and dock style to see exactly what you want on your homescreen.</li>
+            <li>Get the colors to your liking or even better - let us do that for you with automatic theming.</li>
+            <li>Punch up the game with that sweet blur effects.</li>
+          </ul>
+          <p>
+            And much more now, and in the future as Lawnchair is continuously gaining new features and improvements!
+          </p>
         </div>
-        <div id="tabs-content">
-          <div class="tab-content active text" data-index="0">
-            <p>
-              Change what you want:
-            </p>
-            <ul class="in-text-list">
-              <li>Get your favorite icons from hundreds of icon packs in the Play Store.</li>
-              <li>Adjust label size, desktop grid, and dock style to see exactly what you want on your homescreen.</li>
-              <li>Get the colors to your liking or even better - let us do that for you with automatic theming.</li>
-              <li>Punch up the game with that sweet blur effects.</li>
-            </ul>
-            <p>
-              And much more now, and in the future as Lawnchair is continuously gaining new features and improvements!
-            </p>
-          </div>
-          <div class="tab-content text" data-index="1">
-            <p>
-              All of the sweetest goodness from Oreo, also on older versions of Android. That includes Adaptive Icons, App Shortcuts and Notification Dots.<br>
-              You also get even newer stuff such as customisable At a Glance widget known from Google Pixel devices and Android P dock style with much more to come as the times go by.
-            </p>
-          </div>
-          <div class="tab-content text" data-index="2">
-            <p>
-              Enjoy reading the news? Now you can have them on your homescreen. Alongsite freshly updated weather and info you might care about like your commute times - everything that Google Feed provides, now without opening the Google app.
-            </p>
-          </div>
+        <input type="radio" name="features-tabs" id="tab-pie">
+        <label for="tab-pie" class="tab-header">Fresh Pie features</label>
+        <div class="tab-content">
+          <p>
+            You won't miss out on any feature that you know from Android Pie. App Shortcuts, App Actions... all are here!<br>
+            There are also some bonuses such as automatically generating Adaptive Icons for apps that don't support them and At a Glance widget ready for you!
+          </p>
+        </div>
+        <input type="radio" name="features-tabs" id="tab-quickstep">
+        <label for="tab-quickstep" class="tab-header">And even more</label>
+        <div class="tab-content">
+          <p>
+            Enjoy reading the news? Just swipe to the left and enjoy your Google Feed.<br>
+            Or if you have a rooted phone, pump up the game and use Lawnchair to handle your recent apps with QuickSwitch. That way you have even more customisability and oh, it lets you swipe left on the pill to go back!
+          </p>
         </div>
       </div>
     </div>

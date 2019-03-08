@@ -91,7 +91,10 @@ section .text {
     max-width: 1000px;
   }
   .grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+  }
+  #features .vertical-container {
+    margin-right: 30px;
   }
 
 }

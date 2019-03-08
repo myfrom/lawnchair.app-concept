@@ -67,6 +67,13 @@ nav #download-section img {
   margin-top: 24px;
 }
 
+#tabs-container {
+  min-height: 600px;
+}
+.tab-content {
+  top: 77px;
+}
+
 .showcase-in-section {
   overflow-y: hidden;
   position: relative;

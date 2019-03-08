@@ -271,20 +271,15 @@
 // Make tabs in #features go live 🎉
 (() => {
   function setUpListeners() {
-    const tabsNodes = document.querySelectorAll('.tab'),
-          tabsContentNodes = document.querySelectorAll('.tab-content'),
+    const tabsNodes = document.querySelectorAll('#tabs-container input'),
           tabsShowcaseScreenshots = document.querySelectorAll('#features .phone-ss:not([data-lazyload])');
 
     let currentSelected = 0;
 
     Array.prototype.forEach.call(tabsNodes, (tab, tabIndex) => {
-      tab.addEventListener('click', () => {
+      tab.addEventListener('change', () => {
         requestAnimationFrame(() => {
-          tabsNodes[tabIndex].classList.add('active');
-          tabsContentNodes[tabIndex].classList.add('active');
           tabsShowcaseScreenshots.length && tabsShowcaseScreenshots[tabIndex].classList.add('active');
-          tabsNodes[currentSelected].classList.remove('active');
-          tabsContentNodes[currentSelected].classList.remove('active');
           tabsShowcaseScreenshots.length && tabsShowcaseScreenshots[currentSelected].classList.remove('active');
           currentSelected = tabIndex;
         });
@@ -292,6 +287,7 @@
     });
 
     document.querySelector('#features .showcase').classList.add('upgraded');
+    document.querySelector('#tabs-container').classList.add('upgraded');
   }
   
   setUpListeners();
@@ -306,19 +302,17 @@
         window.addEventListener('load', r);
     });
   function setContainerSize() {
-    const tabsContentContainer = document.querySelector('#tabs-content');
-    // TODO: Find a better way to do that
-    tabsContentContainer.removeAttribute('style');
-    tabsContentContainer.classList.remove('upgraded');
-    const { width, height } = tabsContentContainer.getBoundingClientRect();
-    if ('attributeStyleMap' in tabsContentContainer && 'CSS' in window) {
-      tabsContentContainer.attributeStyleMap.set('width', CSS.px(width));
-      tabsContentContainer.attributeStyleMap.set('height', CSS.px(height));
-    } else {
-      tabsContentContainer.style.width = width + 'px';
-      tabsContentContainer.style.height = height + 'px';
-    }
-    tabsContentContainer.classList.add('upgraded');
+    const tabsContentContainer = document.querySelector('#tabs-container');
+    // Take only the longest sections' height
+    const longestContent = document.querySelector('.tab-content.longest'),
+          header = document.querySelector('.tab-header'),
+          headerHeight = header.getBoundingClientRect().height;
+    longestContent.style.display = 'block';
+    longestContent.style.position = 'relative';
+    const contentHeight = longestContent.getBoundingClientRect().height;
+    longestContent.style.display = '';
+    longestContent.style.position = '';
+    tabsContentContainer.style.minHeight = `${contentHeight + headerHeight}px`;
   }
   promise.then(() => {
     window.addEventListener('resize', setContainerSize);
