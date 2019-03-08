@@ -186,9 +186,6 @@ nav #download-section.upgraded {
 #telegram-link::before {
   background-color: #35ace1;
 }
-#googleplus-link::before {
-  background-color: #dd4b39;
-}
 #support-link::before {
   background-color: #00E676;
 }
