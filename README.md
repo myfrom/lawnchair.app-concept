@@ -59,7 +59,7 @@ Version 1.0 of this project scores **88/100 for performance on Lighthouse**.
 
 No, not a PWA but a fast and smooth experience - no matter what device, processor or network. I tried to make best use of what web platform can offer (**#UseThePlatform**) to send down as less code as possible and enhance the experience in newer browsers while maintaining usability in legacy apps.
 
-That also means that the website **works in 90% with JavaScript turned off**.
+That also means that the website **works in 100% with JavaScript turned off**. Why does it matter? If something goes wrong and the scripts fail to execute or haven't downloaded yet, the website will still be responsive and react to user input.
 
 ### Hassle-free deployment
 
@@ -73,10 +73,6 @@ The website is built using Gulp and deployed to Github Pages automatically when 
 
 I tried to put a lot of focus on basic a11y but still many of this territory remains unknown to me or would take a lot more time to properly implement.
 
-### _It just works_ everywhere and every time, kinda
-
-I've said above that the website works "90% without JS", what does not work is the tabs menu and showcase carousel on smaller screens. Again, this was a little too time-consuming for such a small project.
-
 ### A word on legacy
 
 Or rather _'Who damn imagined Internet Explorer'_. Jokes aside, I ensured the page _displays_ in latest version of IE. But that's where my guarantees end. The layout's kinda broken and that annoys me really much. I've found a polyfill that's supposed to be a cure for my problem but it requires a lot of fiddling with the code that I also thought is not worth the time now.
@@ -87,5 +83,6 @@ Also, as you might have noticed, the build script provides two different outputs
 
 - [ ] Properly manage `aria-hidden` attribute on navigation menu and dynamic tabs
 - [ ] Fix layout in IE
-- [ ] More prominently showcase links to download and join beta of 2.0
+- [ ] More prominently showcase links to download and join alpha of 2.0
 - [ ] Add a simple test to make sure Lighthouse scores don't fall down after updates
+- [ ] Further optimise scrolling background feature
