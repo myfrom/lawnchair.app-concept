@@ -441,4 +441,9 @@
       }
     });
   }, { passive: true });
+  // Also pass screen height value
+  bg.style.setProperty('--paint-window-height', window.innerHeight);
+  window.addEventListener('resize', () => {
+    bg.style.setProperty('--paint-window-height', window.innerHeight);
+  }, { passive: true });
 })();

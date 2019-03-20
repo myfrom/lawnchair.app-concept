@@ -9,28 +9,41 @@ class BackgroundPaintWorklet {
 
   static get inputProperties() {
     return [
-      '--paint-scroll-position'
+      '--paint-scroll-position',
+      '--paint-window-height'
     ];
   }
 
   paint(ctx, geom, properties) {
     const u = geom.width / 1280,
           scrollStep = SCROLL_STEP * u,
-          scrollPos = parseInt(properties.get('--paint-scroll-position').toString()) || 0;
+          scrollPos = properties.get('--paint-scroll-position') ? (parseInt(properties.get('--paint-scroll-position').toString()) || 0) : 0,
+          screenHeight = properties.get('--paint-window-height') ? parseInt(properties.get('--paint-window-height').toString()) : geom.height;
     
     ctx.fillStyle = FILL_COLOR;
     ctx.strokeStyle = BG_COLOR;
 
     for (let cy = 0; cy < geom.height; cy += 1600*u) {
-      this.drawCircles(ctx, 100*u, 380*u, 200*u + scrollPos/scrollStep, 320*u, 12*u);
-      this.drawCircles(ctx, 570*u, 1410*u, 200*u + scrollPos/scrollStep, 320*u, 12*u);
-      this.drawDottedStrap(ctx, 350*u, scrollPos/scrollStep, 600*u, geom.width, 16*u);
-      this.drawWaves(ctx, 980*u, 0, scrollPos/scrollStep, 160*u, 300*u, 10*u);
-      this.drawWaves(ctx, 980*u, 1260*u, scrollPos/scrollStep,340*u, 300*u, 10*u);
-      this.drawCross(ctx, 650*u, 240*u, 85 + scrollPos/scrollStep, 150*u, 30*u);
-      this.drawCross(ctx, 455*u, 515*u, 25 + scrollPos/scrollStep, 110*u, 20*u);
-      this.drawCross(ctx, 420*u, 1140*u, 25 + scrollPos/scrollStep, 160*u, 30*u);
-      this.drawS(ctx, 980*u, 900*u, 30 + scrollPos/-scrollStep, 90*u, 30*u);
+
+      // cy + y (from top, not center) < scrollPos + screenHeight && cy + y + height > scrollPos
+      if (cy + 220*u < scrollPos + screenHeight && cy + 540*u > scrollPos)
+        this.drawCircles(ctx, 100*u, 380*u, 200*u + scrollPos/scrollStep, 320*u, 12*u);
+      if (cy + 1280*u < scrollPos + screenHeight && cy + 1600*u > scrollPos)
+        this.drawCircles(ctx, 570*u, 1410*u, 200*u + scrollPos/scrollStep, 320*u, 12*u);
+      if (cy + 350*u < scrollPos + screenHeight && cy + 1550*u > scrollPos)
+        this.drawDottedStrap(ctx, 350*u, scrollPos/scrollStep, 600*u, geom.width, 16*u);
+      if (cy < scrollPos + screenHeight && cy + 160*u > scrollPos)
+        this.drawWaves(ctx, 980*u, 0, scrollPos/scrollStep, 160*u, 300*u, 10*u);
+      if (cy + 1260*u < scrollPos + screenHeight && cy + 1600*u > scrollPos)
+        this.drawWaves(ctx, 980*u, 1260*u, scrollPos/scrollStep, 340*u, 300*u, 10*u);
+      if (cy + 240*u < scrollPos + screenHeight && cy + 390*u > scrollPos)
+        this.drawCross(ctx, 650*u, 240*u, 85 + scrollPos/scrollStep, 150*u, 30*u);
+      if (cy + 515*u < scrollPos + screenHeight && cy + 625*u > scrollPos)
+        this.drawCross(ctx, 455*u, 515*u, 25 + scrollPos/scrollStep, 110*u, 20*u);
+      if (cy + 1140*u < scrollPos + screenHeight && cy + 1300*u > scrollPos)
+        this.drawCross(ctx, 420*u, 1140*u, 25 + scrollPos/scrollStep, 160*u, 30*u);
+      if (cy + 855*u < scrollPos + screenHeight && cy + 945*u > scrollPos)
+        this.drawS(ctx, 980*u, 900*u, 30 + scrollPos/-scrollStep, 90*u, 30*u);
       ctx.translate(0, 1600*u);
     }
   }
@@ -52,7 +65,6 @@ class BackgroundPaintWorklet {
 
   drawS(ctx, x = 0, y = 0, rotate = 0, height = 90, lineWidth = 30) {
     const scale = height / 90;
-    const halfSize = scale / 2;
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(rotate * Math.PI/180);
@@ -114,7 +126,10 @@ class BackgroundPaintWorklet {
       cx = i % 2 ? dotSize / 2 : dotSize * 1.5;
       while (cx < width) {
         const dx = Math.floor(cx + offset), dy = Math.floor(y + i * dotSize*2 - offset / 2);
-        if (ctx.isPointInPath(region, dx, dy)) {
+        if (ctx.isPointInPath(region, dx, dy) ||
+          ctx.isPointInPath(region, dx+dotSize, dy) ||
+          ctx.isPointInPath(region, dx, dy+dotSize) ||
+          ctx.isPointInPath(region, dx+dotSize, dy+dotSize)) {
           ctx.moveTo(dx, dy);
           ctx.arc(dx, dy, dotSize/2, 0, Math.PI * 2);
         }
