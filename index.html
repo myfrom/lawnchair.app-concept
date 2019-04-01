@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"><title>Lawnchair: No clever tagline needed</title><meta name="description" content="The rootless Pixel Launcher that is both heavily customizable and packs all the latest Android Pie features."><meta name="keywords" content="Android, customize, Pixel, Pixel Launcher, Google Pixel, Pixel Google, APK, free, free app, app free, home screen, homescreen"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="theme-color" content="#FFFFFF"><link rel="manifest" href="favicon/manifest.json"><link rel="icon" href="favicon/favicon.ico" type="image/icon-x"><link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#00c853"><meta property="og:title" content="Lawnchair: No clever tagline needed"><meta property="og:type" content="website"><meta property="og:url" content="http://lawnchair.app/"><meta property="og:image" content="http://lawnchair.app/favicon/banner.png"><meta property="og:description" content="The rootless Pixel Launcher that is both heavily customizable and packs all the latest Android Pie features."><style>* {
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 700;
+    }
+  
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      min-height: 100vh;
+      width: 100vw;
+      font-size: 20px;
+      font-family: 'Montserrat', 'Helvetica', sans-serif;
+      font-weight: 500;
+      color: #212121;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    html {
+      position: relative;
+    }
+
+    body {
+      margin: 84px 0 41px 0;
+    }
+    
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      z-index: 2;
+    }
+    #title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+    }
+    #title img {
+      border-radius: 50%;
+      height: 52px;
+      width: 52px;
+      margin: 0 20px;
+    }
+    #title h1 {
+      font-size: 28px;
+      margin: 0;
+      font-weight: 700;
+    }
+    #title span {
+      display: none;
+    }
+    #nav-toggle {
+      display: none;
+    }
+    label[for="nav-toggle"] {
+      width: 40px;
+      height: 40px;
+      padding: 4px;
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 2;
+      border-radius: 4px;
+      background-color: #1a73e8;
+    }
+    label[for="nav-toggle"] > svg {
+      fill: white;
+      transform: none;
+      width: 32px;
+      height: 32px;
+    }
+    nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 18px;
+    }
+    nav > a {
+      text-transform: uppercase;
+      margin: 10px;
+      color: var(--color);
+      background-color: var(--bg-color);
+      position: relative;
+      border-radius: 4px;
+      height: 50px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+    }
+    nav > a::before {
+      content: "";
+      position: absolute;
+      border-radius: 4px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.3;
+      transition: opacity 200ms ease-out;
+    }
+
+    #showcase {
+      --color: #1a73e8;
+    }
+    nav > a:nth-child(1), #about {
+      --color: #1ad9d3;
+      --bg-color: #d1f7f6;
+    }
+    nav > a:nth-child(2), #features {
+      --color: #1a73e8;
+      --bg-color: #d1e3fa;
+    }
+    
+    nav > a:nth-child(3), #team {
+      --color: #d91a93;
+      --bg-color: #f7d1e9;
+    }
+    nav > a:nth-child(4) {
+      --color: #1ad960;
+      --bg-color: #d1f7df;
+    }
+
+    section {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+    }
+    section .text {
+      max-width: 600px;
+      line-height: 1.4em;
+      text-align: justify;
+    }
+    section h2 {
+      margin-top: 0;
+      font-weight: 700;
+      font-size: 1.7em;
+      line-height: 1.4em;
+      text-align: center;
+    }
+    section .text br {
+      height: 0.7em;
+      width: 100%;
+      content: "";
+      display: block;
+    }
+
+    .vertical-container {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .showcase img {
+      width: 200px;
+    }
+    .showcase-in-section {
+      margin-top: 100px;
+      max-height: 300px;
+    }
+    .showcase-author {
+      color: var(--color);
+      font-size: 14px;
+      margin-top: 15px;
+      transition: all 200ms ease-in-out;
+    }
+    .showcase-author.hide-by-default {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    .showcase:focus .showcase-author.hide-by-default,
+    .showcase:hover .showcase-author.hide-by-default {
+      transform: none;
+      opacity: 1;
+    }
+    #carousel {
+      overflow-x: visible;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+    #carousel > div {
+      display: inline-block;
+      margin: 40px;
+      transition: transform 200ms ease-in-out;
+      transform: scale(0.8);
+    }
+    #carousel .showcase-author {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    #carousel > div.prominent {
+      transform: none;
+    }
+    #carousel > .prominent .showcase-author {
+      opacity: 1;
+      transform: none;
+    }
+
+    #scroll-down-indicator {
+      display: none;
+    }
+    
+    #features .showcase {
+      position: relative;
+    }
+    #features .phone-ss {
+      position: absolute;
+      top: 32px;
+      left: 11px;
+      height: 315px;
+      width: 177px;
+    }
+    #features .phone-ss:not(.active) {
+      display: none;
+    }
+
+    #tabs-container input {
+      display: none;
+    }
+    #tabs-container input:not(:checked)+label+div {
+      display: none;
+    }
+    .tab-content {
+      position: absolute;
+      top: 52px;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+    #tabs-container {
+      width: 100%;
+      max-width: 600px;
+      min-height: 450px;
+      position: relative;
+    }
+
+    #people {
+      max-width: 600px;
+    }
+    #people h2 {
+      margin: 48px 0 42px 0;
+    }
+    #people h3 {
+      margin: 16px 0 24px 0;
+    }
+    #people img {
+      border-radius: 50%;
+    }
+    #authors-grid img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 0.7em;
+    }
+    #authors-grid {
+      grid-auto-rows: minmax(200px, auto);
+      grid-gap: 12px;
+    }
+    #authors-grid a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-weight: 500;
+      text-align: center;
+    }
+    #authors-grid .job {
+      font-size: 0.8em;
+      opacity: 0.72;
+      font-weight: 700;
+    }
+    #social h2 {
+      margin: 42px 0 0.2em 0;
+    }
+    #social > span {
+      margin-bottom: 30px;
+    }
+    #social-links {
+      grid-gap: 8px 20px;
+    }
+    #social-links a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    #social-links img {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+    }
+
+    #background {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      
+        background-image: url(images/background-phone.png);
+        background-image: image-set(
+          
+        url(images/background-phone.png) 720w,
+        url(images/background-phone-460px.png) 460w,
+        url(images/background-phone-1080px.png) 1080w,
+        url(images/background-phone-1440px.png) 1440w
+      
+        );
+        background-image: -webkit-image-set(
+          
+        url(images/background-phone.png) 720w,
+        url(images/background-phone-460px.png) 460w,
+        url(images/background-phone-1080px.png) 1080w,
+        url(images/background-phone-1440px.png) 1440w
+      
+        );
+      background-size: contain;
+      background-repeat: repeat-y;
+    }
+
+    @media (min-width: 700px) {
+      
+      label[for="nav-toggle"] {
+        display: none;
+      }
+      #title span {
+        display: inline-block;
+      }
+      nav #download-section:not(.upgraded) {
+        display: none !important;
+      }
+
+      section {
+        flex-direction: row;
+      }
+
+      section .text h2 {
+        text-align: left;
+      }
+
+      .showcase-in-section {
+        margin-top: 0;
+        max-height: unset;
+      }
+
+      #scroll-down-indicator {
+        display: block;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      #background {
+        
+        background-image: url(images/background-big.png);
+        background-image: image-set(
+          
+        url(images/background-big.png) 1920w,
+        url(images/background-big-960px.png) 960w,
+        url(images/background-big-1280px.png) 1280w,
+        url(images/background-big-2560px.png) 2560w,
+        url(images/background-big-3840px.png) 3840w
+      
+        );
+        background-image: -webkit-image-set(
+          
+        url(images/background-big.png) 1920w,
+        url(images/background-big-960px.png) 960w,
+        url(images/background-big-1280px.png) 1280w,
+        url(images/background-big-2560px.png) 2560w,
+        url(images/background-big-3840px.png) 3840w
+      
+        );
+      }
+
+      #carousel {
+        align-self: unset !important;
+        transform: none !important;
+      }
+
+    }
+
+    @media (min-width: 700px) and (max-width: 900px) {
+
+      header {
+        height: 100px;
+      }
+      #title :not(img) {
+        display: none;
+      }
+      #title img {
+        margin-left: 28px;
+        height: 64px;
+        width: 64px;
+      }
+
+      section {
+        min-height: calc(100vh - 100px);
+        padding: 28px;
+      }
+
+      .showcase-in-section {
+        margin-right: 28px;
+        margin-bottom: 0;
+      }
+
+    }</style><link rel="stylesheet" href="css/index-desktop.css" media="(min-width: 900px)"><noscript id="lazyload-css"><link rel="stylesheet" href="css/index-noncritical.css"><link rel="stylesheet" href="css/index-mobile-noncritical.css" media="(max-width: 700px)"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:500,700"></noscript><noscript><style>/* Our moving desktop background doesn't work so use standard one */
+      @media (min-width: 700px) {
+        #background {
+          
+        background-image: url(images/background-big.png);
+        background-image: image-set(
+          
+        url(images/background-big.png) 1920w,
+        url(images/background-big-960px.png) 960w,
+        url(images/background-big-1280px.png) 1280w,
+        url(images/background-big-2560px.png) 2560w,
+        url(images/background-big-3840px.png) 3840w
+      
+        );
+        background-image: -webkit-image-set(
+          
+        url(images/background-big.png) 1920w,
+        url(images/background-big-960px.png) 960w,
+        url(images/background-big-1280px.png) 1280w,
+        url(images/background-big-2560px.png) 2560w,
+        url(images/background-big-3840px.png) 3840w
+      
+        );
+        }
+      }</style></noscript></head><body><div id="background"></div><header><div id="title"><noscript class="lazyload-image"><img src="images/logo-512px.png" alt="Beautiful logo" srcset="images/logo-52px.png 52w, images/logo-104px.png 104w, images/logo-64px.png 64w, images/logo-128px.png 128w, images/logo-70px.png 70w, images/logo-140px.png 140w" sizes="
+          (max-width: 700px) 52px,
+          (min-width: 700px) and (max-width: 900px) 64px,
+          (min-width: 900px) 70px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAARlAAAEZQAGA43XUAAAAdElEQVQI1wFpAJb/AD6n8yEunvrFL6D6/8fUcsb//wAjACuR+MVvu///NZn8+p+/lP/Ew2zKACGE9v9ZoO76vM75/2Ci9/kqh/X/ACbJjsZs66X/g9qh+Xbxm/8qwpLLADP/PyMo4l7KGeJX/yTfX8tB/0Uki+RAVLFvuX8AAAAASUVORK5CYII=" alt="Beautiful logo" data-lazyload><div><h1>Lawnchair</h1><span>No clever tagline needed</span></div></div><input type="checkbox" id="nav-toggle"> <label aria-label="Toggle navigation menu" for="nav-toggle"><svg viewBox="0 0 24 24"><path d="M18,9V10.5L12,16.5L6,10.5V9H18M12,13.67L14.67,11H9.33L12,13.67Z"/></svg></label><nav><a href="#about">About</a> <a href="#features">Features</a> <a href="#team">Team</a> <a id="download-button" href="https://play.google.com/store/apps/details?id=ch.deletescape.lawnchair.plah" target="_blank" rel="noreferrer noopener">Download</a><div id="download-section"><a href="https://play.google.com/store/apps/details?id=ch.deletescape.lawnchair.plah&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noopener noreferrer"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"></a><div><a href="https://f-droid.org/en/packages/ch.deletescape.lawnchair.plah/" target="_blank" rel="noopener noreferrer">Download from <span>F-Droid</span> </a><a href="https://labs.xda-developers.com/store/app/ch.deletescape.lawnchair" target="_blank" rel="noopener noreferrer">Find it on <span>XDA Labs</span></a></div></div></nav></header><section id="showcase"><div id="carousel"><div class="prominent showcase"><noscript class="lazyload-image"><img src="images/setups/mohitkumar.png" alt="Super homescreen by Mohit" srcset="images/setups/mohitkumar.png 200w, images/setups/mohitkumar-300px.png 300w, images/setups/mohitkumar-400px.png 400w, images/setups/mohitkumar-600px.png 600w" sizes="
+          (min-width: 1920px) 300px,
+          200px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAACXBIWXMAAC4jAAAuIwF4pT92AAAA3UlEQVQI1wHSAC3/AFFSU+5YWlv/WVtf/VhbW/9PT0jrALe7wP/0+v3+7e/q//7x2/+6pH7+AK+3wP71+Pz/9/Dn/vrWtf+7f1j8AMKYq/7/2/D/8snb/s+Ei/+yPkH8AMAmof7rDqv/0gpr/tEBNv+dFiv+AIYPjP6RAHv/eAA//mUAH/9OFCL8ADYRbP4fAE//EwAl/gYADv8TEBf7ACAjWv4KCTf+AxIa/gwSC/8qGhj7AB8dPv8VEi//HRgg/x8VFv8kHSL+AB4aJ/INCxj3Gg8W9hYKD/cbGh/vQbRp9AB9K/EAAAAASUVORK5CYII=" alt="Super homescreen by Mohit" data-lazyload><div class="showcase-author">Setup by <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/98mohitkumar">Mohit</a></div></div><div class="showcase"><noscript class="lazyload-image"><img src="images/setups/dre_mrn.png" alt="Super homescreen by Andrea Marino" srcset="images/setups/dre_mrn.png 200w, images/setups/dre_mrn-300px.png 300w, images/setups/dre_mrn-400px.png 400w, images/setups/dre_mrn-600px.png 600w" sizes="
+          (min-width: 1920px) 300px,
+          200px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAACXBIWXMAAC4jAAAuIwF4pT92AAAArUlEQVQI1x2OWw6CMBREL5RHSwsFpOUhiQ/8MH65BOMC3P8mdAPqHYtfM5PMmQw1fnqaTQ/T+m/ZDajd+KJm3CPNJVMUI0kzLv0MUrVnW5VYjgfWSkKGTGU3MhFBSM1CxNBtD9JN/zfnyxUnXWHNAXdYdgsetzumOexbBzLdiBUnWQWNUKxN47espEIhTdAiXBuYjJshhOREFRBZzroNpHXzW6gKmWlZKAvTTZ8fCow6+oSQlfMAAAAASUVORK5CYII=" alt="Super homescreen by Andrea Marino" data-lazyload><div class="showcase-author">Setup by <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/dre_mrn/">Andrea Marino</a></div></div><div class="showcase"><noscript class="lazyload-image"><img src="images/setups/gozofin.png" alt="An interesting launchair setup by @gozofin" srcset="images/setups/gozofin.png 200w, images/setups/gozofin-300px.png 300w, images/setups/gozofin-400px.png 400w, images/setups/gozofin-600px.png 600w" sizes="
+          (min-width: 1920px) 300px,
+          200px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAACXBIWXMAAAsSAAALEgHS3X78AAAA3UlEQVQI1wHSAC3/AObj4OTl5OP/2NjY/ePi4v/h39/kAMrR4P/J0Nr+2NnX/97f4P7f39//ANbf7f7Z4+3/7PHw/vH29//p6+v+AMjU1f7b5ub/5uvs/qG0t//F0tT+AJ6srv/Ezc3/q7Oz/1lnav97jpT/AFhdX/9GTU7/R01L/0tUVP9je4L/AEhbWP4aLzH/H0Ra/io2P/9pam7/AFdscP4wSUz/KE1r/kA8Sf9vXV3+AI2CX/9haGL+aHN5/1JjXv6CkJP/AN3Zz/Hb2tX/2NnZ/djZ0//d2tfxvKGPu/GFbZAAAAAASUVORK5CYII=" alt="An interesting launchair setup by @gozofin" data-lazyload><div class="showcase-author">Setup by <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/gozofin">@gozofin</a></div></div></div><div id="scroll-down-indicator"><svg viewBox="0 0 30 30"><g><path d="M 15 2.063 L 15 2.063 C 19.415 2.063 23 5.647 23 10.063 L 23 19.938 C 23 24.353 19.415 27.938 15 27.938 L 15 27.938 C 10.585 27.938 7 24.353 7 19.938 L 7 10.063 C 7 5.647 10.585 2.063 15 2.063 Z"></path><line x1="15" y1="8" x2="15" y2="12" stroke-linecap="round"></line></g></svg></div></section><section id="about"><div class="showcase-in-section showcase"><noscript class="lazyload-image"><img src="images/setups/horaciopaidon.png" alt="Super homescreen by +Horacio Héctor Paidón" srcset="images/setups/horaciopaidon.png 200w, images/setups/horaciopaidon-300px.png 300w, images/setups/horaciopaidon-400px.png 400w, images/setups/horaciopaidon-600px.png 600w" sizes="
+          (min-width: 1920px) 300px,
+          200px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAACXBIWXMAAAsSAAALEgHS3X78AAAA3UlEQVQI1wHSAC3/AD49PuQyMDP/PDs+/Ts7O/9WVlXjAExki/9JZrH+TFqv/1ldvP5iYJ3/AFaHrP5lqOv/ZJXj/miN9P9ab7/9AFh7o/5kqN//XqXY/l6m6/9rbqb/AF5soP9ykOH/Yp/Z/519yv+ZSIX/AFpwlv9tjNL/o1qx/9VGm/+SUnj/AFNgn/9Zicr/rGyT/+Jblf+WT3f/AICMu/yitvz9psnQ/uLP1f2odpD8AG5sjf+Jibr/eImx/46Xrv+KXXD/AC8vMbANDRDOKSgq9xIUFd4lKCit2995KuQqKvcAAAAASUVORK5CYII=" alt="Super homescreen by +Horacio Héctor Paidón" data-lazyload> <span class="showcase-author hide-by-default">Setup by <a target="_blank" rel="noopener noreferrer" href="https://plus.google.com/+HoracioPaid%C3%B3n">+Horacio Héctor Paidón</a></span></div><div class="text"><h2>No clever tagline needed</h2><p>Lawnchair. Get it? It's a bad pun, we know but the launcher itself is great!<br>It's based on Launcher3 from <a href="https://source.android.com" rel="noopener noreferrer" target="_blank">AOSP</a> which is also a base for Pixel Launcher and thus you can find all of its features (including Google Feed integration!) in Lawnchair plus a lot of customizability and compatibility with older Android versions.<br>For how much? Absolutely nothing! Lawnchair is 100% free and open source and does not sacrifice on performance or battery life. And it's going to stay that way. <span class="secondary-text">Ok, maybe for a few megabytes of storage.</span></p></div></section><section id="features"><div class="showcase-in-section showcase"><noscript class="lazyload-image"><img src="images/features/frame.png" alt="" id="phone-frame" srcset="images/features/frame.png 200w, images/features/frame-300px.png 300w, images/features/frame-400px.png 400w, images/features/frame-600px.png 600w" sizes="
+          (min-width: 1920px) 300px,
+          200px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAkklEQVQI12WNOQ7CMBBFx7Ilx6tkRUREoSE1adOSy9JwFyqQOAdLkcXYjJFTUTy90defGRiOw6Xv+6k7dL7dt3O1qW6wa5pFShm11kEpFa21EeptHYQQYQ3RE2B9XJtI8gxlWT7/QufcO6/9QpwXwMOvFCIh24Mx5pHXPvnZCEVReCSucM4jUEpPhJArck9mjJ2/M8w4RvP+L+kAAAAASUVORK5CYII=" alt="" id="phone-frame" data-lazyload><noscript class="lazyload-image"><img src="images/features/customisation.png" alt="" class="phone-ss active" data-index="0" srcset="images/features/customisation.png 180w, images/features/customisation-360px.png 360w, images/features/customisation-270px.png 270w, images/features/customisation-540px.png 540w" sizes="
+          (min-width: 1920px) 270px,
+          180px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAIAAAB1z3HJAAAACXBIWXMAAAsSAAALEgHS3X78AAAAcklEQVQI10XLyQ6DMAwEUMeNE7uGhHSJUBSoCqp66L03/v+3AKnL3J5mBoTZInZt6+0hxQB9jtccX8/7NNZhHOB4SRoDOQKDBhGoZgmNgW9Ot8lr+BHmstX+b32U5txt14/r8k6lVxFybrdTsUTMjLhPVsgyBY70fjdDAAAAAElFTkSuQmCC" alt="" class="phone-ss active" data-index="0" data-lazyload><noscript class="lazyload-image"><img src="images/features/pie-actions.png" alt="" class="phone-ss" data-index="1" srcset="images/features/pie-actions.png 180w, images/features/pie-actions-360px.png 360w, images/features/pie-actions-270px.png 270w, images/features/pie-actions-540px.png 540w" sizes="
+          (min-width: 1920px) 270px,
+          180px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAIAAAB1z3HJAAAACXBIWXMAAAsSAAALEgHS3X78AAAAmElEQVQI12Nwd3crLSouycttqSgLCgxmsHcLd4jKC3P2i7O2DzazZtDQNtbQNlKRUTLSNZKTlGaQ0NG2NrHTMjAystCRMrFg4JWUUVPRUdPSVlSRljUyZZBT0zQxNra0tVOx8BZVVWNQs3JXNDDTcLQxN1C2tjdgkNI0kVHXl9Q31FCV1TfQY1BVklHQtpQysjfQVFJQ0gcACeQb+PCbqwUAAAAASUVORK5CYII=" alt="" class="phone-ss" data-index="1" data-lazyload><noscript class="lazyload-image"><img src="images/features/quickswitch.png" alt="" class="phone-ss" data-index="2" srcset="images/features/quickswitch.png 180w, images/features/quickswitch-360px.png 360w, images/features/quickswitch-270px.png 270w, images/features/quickswitch-540px.png 540w" sizes="
+          (min-width: 1920px) 270px,
+          180px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAIAAAB1z3HJAAAACXBIWXMAAAsSAAALEgHS3X78AAAAmUlEQVQI12NoiA5tTUyYOqm7LT52QVkeg5K8Umh3b+G+nZ5VVZOz4hmktNQdDmw13LnOcM+GpKhoBkFRcZ3wZGWPOCXnUFcTJwZ+VnaJ6BKxuUtEynrdDJ0YJLlFpIOcBJu9xWvCbXUsGIJdvbLDE1I9IjKD4wNdvBn83KMdAtJCbTxTLexSTCwYtKSV1aVVjWTV9UTl9MXlAHx3KgDI3VFLAAAAAElFTkSuQmCC" alt="" class="phone-ss" data-index="2" data-lazyload></div><div class="vertical-container"><h2>What can you find in Lawnchair?</h2><div id="tabs-container"><input type="radio" name="features-tabs" id="tab-customization" checked="checked"> <label for="tab-customization" class="tab-header">Customization</label><div class="tab-content longest"><p>Change what you want:</p><ul class="in-text-list"><li>Get your favorite icons from hundreds of icon packs in the Play Store.</li><li>Adjust label size, desktop grid, and dock style to see exactly what you want on your homescreen.</li><li>Get the colors to your liking or even better - let us do that for you with automatic theming.</li><li>Punch up the game with that sweet blur effects.</li></ul><p>And much more now, and in the future as Lawnchair is continuously gaining new features and improvements!</p></div><input type="radio" name="features-tabs" id="tab-pie"> <label for="tab-pie" class="tab-header">Fresh Pie features</label><div class="tab-content"><p>You won't miss out on any feature that you know from Android Pie. App Shortcuts, App Actions... all are here!<br>There are also some bonuses such as automatically generating Adaptive Icons for apps that don't support them and At a Glance widget ready for you!</p></div><input type="radio" name="features-tabs" id="tab-quickstep"> <label for="tab-quickstep" class="tab-header">And even more</label><div class="tab-content"><p>Enjoy reading the news? Just swipe to the left and enjoy your Google Feed.<br>Or if you have a rooted phone, pump up the game and use Lawnchair to handle your recent apps with QuickSwitch. That way you have even more customisability and oh, it lets you swipe left on the pill to go back!</p></div></div></div></section><section id="team" class="vertical-container"><div id="people" class="vertical-container"><h2>Meet the creators of Lawnchair</h2><div id="authors-grid" class="grid"><a href="https://codebucket.de" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/david_sn.jpg" alt="David's photo" srcset="images/team/creators/david_sn.jpeg 100w, images/team/creators/david_sn-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAT/xAAdEAABBAMBAQAAAAAAAAAAAAABAAIDIQQFEQZB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAMAwEAAhEDEQA/AJ8D2G5g22wIzJXGVsUh681RHKr4iIqAE2O//9k=" alt="David's photo" data-lazyload> <span class="name">David Sn</span> <span class="job">DevOps</span> </a><a href="https://deletescape.ch/" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/deletescape.jpg" alt="A colorful D letter" srcset="images/team/creators/deletescape.jpeg 100w, images/team/creators/deletescape-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/xAAcEAACAgMBAQAAAAAAAAAAAAABAwACBBESE2H/xAAUAQEAAAAAAAAAAAAAAAAAAAAB/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAwDAQACEQMRAD8AqHFQ1Lci7Mi7Q2/Va2AHmNa5HyIiK71ldv/Z" alt="A colorful D letter" data-lazyload> <span class="name">Till Kottmann</span> <span class="job">Lead developer</span> </a><a href="https://github.com/paphonb" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/paphonb.png" alt="Black. Simplicity is the best." srcset="images/team/creators/paphonb.png 100w, images/team/creators/paphonb-200px.png 200w" sizes="100px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAACXBIWXMAAAsSAAALEgHS3X78AAAADElEQVQI12NgoC4AAABQAAEiE+h1AAAAAElFTkSuQmCC" alt="Black. Simplicity is the best." data-lazyload> <span class="name">paphonb</span> <span class="job">Developer</span> </a><a href="https://github.com/fonix232" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/fonix232.png" alt="Fonix232, literally" srcset="images/team/creators/fonix232.png 100w, images/team/creators/fonix232-200px.png 200w" sizes="100px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAM0lEQVQI123LsQkAQAjF0A+ibmEp6P775eBqi9cEIkkcjlhVzAy7S3d/MjMigszE3b9zf3UcG21D/TBdAAAAAElFTkSuQmCC" alt="Fonix232, literally" data-lazyload> <span class="name">Jozsef Kiraly</span> <span class="job">Developer</span> </a><a href="https://github.com/amirzaidi" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/amirzaidi.jpg" alt="Amir, on the move." srcset="images/team/creators/amirzaidi.jpeg 100w, images/team/creators/amirzaidi-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAfEAACAgIBBQAAAAAAAAAAAAABBAADAhEFBhIhYZH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABkRAAIDAQAAAAAAAAAAAAAAAAECAAMhEv/aAAwDAQACEQMRAD8Ana+vKVe1tvgU323MMbLrWLMiTkCRvx618EREoqrUoMhXO3Z2f//Z" alt="Amir, on the move." data-lazyload> <span class="name">Amir Zaidi</span> <span class="job">Developer</span> </a><a href="https://github.com/reC0D3D" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/recoded.png" alt="reCoded in SVG" srcset="images/team/creators/recoded.png 100w, images/team/creators/recoded-200px.png 200w" sizes="100px"></noscript><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAWElEQVQI12P4X6W/Pc0iJSrgYrYxkM3wv0gls7xSefPnitLc/2UaQL7S7lktgTf+L1iz6n8JkF+mca/RN/T0741b1v0vVGConzJNePF9/dUPTDe/dJi5GwA7PylarCTerQAAAABJRU5ErkJggg==" alt="reCoded in SVG" data-lazyload> <span class="name">reCoded</span> <span class="job">Developer / Moderator</span> </a><a href="https://joshuabaldassarre.github.io/" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/joshua_baldassarre.jpg" alt="Cool photo of Joshua" srcset="images/team/creators/joshua_baldassarre.jpeg 100w, images/team/creators/joshua_baldassarre-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAeEAACAQMFAAAAAAAAAAAAAAABAgADEVEEBhUxMv/EABUBAQEAAAAAAAAAAAAAAAAAAAEE/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEhEv/aAAwDAQACEQMRAD8Aq6+y+OC214qu/pmoW6wAwyYiIK0o00f/2Q==" alt="Cool photo of Joshua" data-lazyload> <span class="name">Joshua Baldassarre</span> <span class="job">Designer</span> </a><a href="https://lumiqcreative.com/" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/lumiq.jpg" alt="A logo that's probably outdated by now" srcset="images/team/creators/lumiq.jpeg 100w, images/team/creators/lumiq-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAj/xAAdEAACAgEFAAAAAAAAAAAAAAAAAQIEAxEVIkFx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AJilcruMVt1ZNdqWTV+8gAB//9k=" alt="A logo that's probably outdated by now" data-lazyload> <span class="name">Lumiq Creative</span> <span class="job">UI/UX Designer</span> </a><a href="https://christopherkardas.me/" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/cristopher_kardas.jpg" alt="A photo of Christopher Kardas" srcset="images/team/creators/cristopher_kardas.jpeg 100w, images/team/creators/cristopher_kardas-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAdEAACAgEFAAAAAAAAAAAAAAABAwACEQQFE1Fh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAYEQACAwAAAAAAAAAAAAAAAAABAgADEf/aAAwDAQACEQMRAD8Ai9sQxRNtKxaqtSq5rx5wTXPfpiIl9VKFQcgsx2f/2Q==" alt="A photo of Christopher Kardas" data-lazyload> <span class="name">Christopher Kardas</span> <span class="job">PR Manager/Moderator</span> </a><a href="https://twitter.com/rickkode" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/rickkode.jpg" alt="A nice image with his name" srcset="images/team/creators/rickkode.jpeg 100w, images/team/creators/rickkode-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAAABQQDAAAAAAAAAAAAAAAAAgMEEQEFBhQSITH/xAAVAQEBAAAAAAAAAAAAAAAAAAAABP/EABkRAQACAwAAAAAAAAAAAAAAAAEAAhITQf/aAAwDAQACEQMRAD8AoGKO29zQcE1jI6x6JyVWefUz4AAGdnsm00AAn//Z" alt="A nice image with his name" data-lazyload> <span class="name">Rick Koedoot</span> <span class="job">Moderator/Support</span> </a><a href="https://twitter.com/bohra_abhijeet" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/bohda_abhijeet.jpg" alt="A portrait of Abhijeet" srcset="images/team/creators/bohda_abhijeet.jpeg 100w, images/team/creators/bohda_abhijeet-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAdEAABBAMBAQAAAAAAAAAAAAACAAEDEQQhMQZS/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAaEQEAAwADAAAAAAAAAAAAAAABAAIDESGx/9oADAMBAAIRAxEAPwCNx/Y00ojgMAvKZswy83VbF/m9V1ERBhR7T2RpUbcs/9k=" alt="A portrait of Abhijeet" data-lazyload> <span class="name">Abhijeet Bohra</span> <span class="job">Moderator/Support</span> </a><a href="https://twitter.com/skittles9823" target="_blank" rel="noopener noreferrer"><noscript class="lazyload-image"><img src="images/team/creators/rhyse_simpson.jpg" alt="A drawing of Rhyse" srcset="images/team/creators/rhyse_simpson.jpeg 100w, images/team/creators/rhyse_simpson-200px.jpeg 200w" sizes="100px"></noscript><img src="data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAdEAABBAMBAQAAAAAAAAAAAAABAAIDBBESIQUH/8QAFAEBAAAAAAAAAAAAAAAAAAAABP/EAB0RAAEDBQEAAAAAAAAAAAAAAAIAAQMEESExsVH/2gAMAwEAAhEDEQA/AIex9MfDTqSM8iFplD9tZiMkOIyed4iInBGNte9SCrZ2wxcX/9k=" alt="A drawing of Rhyse" data-lazyload> <span class="name">Rhyse Simpson</span> <span class="job">Magisk Module Maintainer</span></a></div></div><div id="social" class="vertical-container"><h2>Get news, discuss things and have some fun</h2><span>...on our social media channels</span><div class="grid" id="social-links"><a id="twitter-link" href="https://twitter.com/lawnchairapp/" target="_blank" rel="noreferrer noopener"><img src="images/social_icons/twitter.svg"><span>Twitter</span></a> <a id="instagram-link" href="https://www.instagram.com/lawnchairstyle/" target="_blank" rel="noreferrer noopener"><img src="images/social_icons/instagram.svg"><span>Instagram</span></a> <a id="telegram-link" href="https://t.me/lccommunity" target="_blank" rel="noreferrer noopener"><img src="images/social_icons/telegram.svg"><span>Telegram</span></a> <a id="support-link" href="https://lawnchair.freshdesk.com" target="_blank" rel="noreferrer noopener"><img src="images/social_icons/support.svg"><span>Support</span></a> <a id="github-link" href="https://github.com/LawnchairLauncher/Lawnchair" target="_blank" rel="noreferrer noopener"><img src="images/social_icons/github.svg"><span>GitHub</span></a></div></div></section><footer><div class="footer-column"><p>This website is not affiliated with Lawnchair and/or its developers.</p><p>A fan project, made by <a href="https://myfrom.me" target="_blank" rel="noreferrer noopener">myfrom</a>.</p><p><a href="https://github.com/myfrom/lawnchair.app-concept" target="_blank" rel="noopener noreferrer">Read more</a> about the focuses of the project</p></div><div class="footer-column"><p><a href="https://t.me/lawnchairchannel/243" rel="noopener noreferrer" target="_blank">Beta test version 2.0</a></p><p><a href="get-lawnfeed" rel="noopener noreferrer" target="_blank">Get Lawnfeed</a></p></div></footer><script src="js/index.js"></script></body></html>
